@@ -1,298 +1,519 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>मेरा पर्सनल ब्लॉग</title>
-
+<title>Bala Ji High School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-*{
+  :root{
+    --maroon:#6B1E2B;
+    --maroon-dark:#4A1420;
+    --navy:#14213D;
+    --gold:#C9A227;
+    --gold-light:#E4C868;
+    --ivory:#F3ECDD;
+    --ivory-dark:#E6DACB;
+    --ink:#241D16;
+    --success:#2F6B4F;
+    --success-light:#DCEAE1;
+    --shadow: 0 12px 30px rgba(20,33,61,0.14);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
     margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    line-height:1.5;
+  }
+  h1,h2,h3,.display{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:700;
+    color:var(--navy);
+    margin:0;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.02em; }
+  a{color:inherit;}
+  button{font-family:inherit;}
+  :focus-visible{ outline: 3px solid var(--gold); outline-offset: 2px; }
 
-html{
-    scroll-behavior:smooth;
-}
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--navy);
+    border-bottom:3px solid var(--gold);
+  }
+  .nav-wrap{
+    max-width:1120px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .crest{ width:42px; height:42px; flex-shrink:0; }
+  .brand-text{ color:var(--ivory); }
+  .brand-text .school-name{ font-family:'Cormorant Garamond', serif; font-weight:700; font-size:1.3rem; line-height:1.1; }
+  .brand-text .school-sub{ font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-light); }
+  nav.links{ display:flex; gap:4px; }
+  nav.links button{
+    background:none; border:none; color:var(--ivory); opacity:0.8;
+    font-size:0.95rem; padding:8px 14px; cursor:pointer; border-radius:var(--radius);
+    transition:opacity .15s ease, background .15s ease;
+  }
+  nav.links button:hover{ opacity:1; background:rgba(255,255,255,0.08); }
+  nav.links button.active{ opacity:1; color:var(--gold-light); font-weight:600; }
+  .btn-admission{
+    background:var(--gold); color:var(--navy); text-decoration:none;
+    font-size:0.9rem; font-weight:700; padding:9px 16px; border-radius:var(--radius);
+    margin-left:6px; white-space:nowrap; transition:transform .15s ease, background .15s ease;
+  }
+  .btn-admission:hover{ background:var(--gold-light); transform:translateY(-1px); }
 
-body{
-    background:#f5f7fb;
-    color:#333;
-}
+  main{ max-width:1120px; margin:0 auto; padding:0 24px; }
+  section.view{ display:none; padding:56px 0 80px; }
+  section.view.active{ display:block; animation:fadein .35s ease; }
+  @keyframes fadein{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
 
-/* Header */
-header{
-    height:80px;
-    background:linear-gradient(135deg,#4f46e5,#7c3aed);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 40px;
-    position:sticky;
-    top:0;
-    z-index:1000;
-    box-shadow:0 4px 15px rgba(0,0,0,.15);
-}
+  /* ---------- HOME ---------- */
+  .hero{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:48px; align-items:center;
+    padding-bottom:48px; border-bottom:1px solid var(--ivory-dark);
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--maroon); font-weight:600; margin-bottom:14px;
+  }
+  .eyebrow::before{ content:""; width:22px; height:2px; background:var(--gold); display:inline-block; }
+  .hero h1{ font-size:3.4rem; line-height:1.02; }
+  .hero p.lede{ margin-top:18px; font-size:1.1rem; max-width:46ch; color:#4B4032; }
+  .hero-actions{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px; border-radius:var(--radius); border:2px solid transparent;
+    font-weight:600; font-size:0.95rem; cursor:pointer; text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--maroon); color:var(--ivory); box-shadow: var(--shadow); }
+  .btn-ghost{ background:transparent; border-color:var(--navy); color:var(--navy); }
 
-.logo{
-    font-size:28px;
-    font-weight:bold;
-}
+  .seal-panel{
+    background:var(--navy); border-radius:8px; padding:36px;
+    display:flex; align-items:center; justify-content:center;
+    aspect-ratio:1/1; max-width:340px; margin:0 auto; position:relative;
+    box-shadow: var(--shadow);
+  }
+  .seal-panel::after{
+    content:""; position:absolute; inset:12px; border:1px solid rgba(201,162,39,0.4); border-radius:6px;
+  }
+  .seal-panel svg{ width:70%; height:70%; }
 
-.header-btn{
-    background:white;
-    color:#4f46e5;
-    padding:10px 20px;
-    border:none;
-    border-radius:30px;
-    cursor:pointer;
-    font-weight:600;
-    transition:.3s;
-}
+  .info-strip{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--ivory-dark); margin-top:48px; border-radius:6px; overflow:hidden;
+  }
+  .info-cell{ background:var(--ivory); padding:22px 20px; }
+  .info-cell .label{ font-size:0.68rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--maroon); font-weight:600; }
+  .info-cell .value{ font-family:'Cormorant Garamond', serif; font-size:1.3rem; color:var(--navy); font-weight:600; margin-top:6px; }
 
-.header-btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 20px rgba(0,0,0,.2);
-}
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:56px; align-items:start; }
+  .about-grid h2{ font-size:2.2rem; margin-bottom:16px; }
+  .about-grid p{ color:#4B4032; max-width:52ch; }
+  .values{ display:flex; flex-direction:column; gap:18px; margin-top:8px; }
+  .value-card{
+    background:#fff; border:1px solid var(--ivory-dark); border-left:4px solid var(--gold);
+    padding:18px 20px; border-radius:4px;
+  }
+  .value-card h3{ font-size:1.25rem; }
+  .value-card p{ margin:6px 0 0; font-size:0.95rem; }
 
-/* Layout */
-.container{
-    display:flex;
-    min-height:calc(100vh - 140px);
-}
+  /* ---------- ATTENDANCE ---------- */
+  .att-heading{ margin-bottom:8px; }
+  .att-sub{ color:#4B4032; max-width:60ch; margin-top:6px; }
+  .att-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap:40px; margin-top:36px; align-items:start;
+  }
+  .card{
+    background:#fff; border:1px solid var(--ivory-dark); border-radius:8px; padding:28px;
+    box-shadow: var(--shadow);
+  }
+  .field{ margin-bottom:18px; }
+  .field label{ display:block; font-size:0.8rem; font-weight:600; color:var(--navy); margin-bottom:6px; }
+  .field input, .field select{
+    width:100%; padding:11px 12px; border:1.5px solid var(--ivory-dark); border-radius:4px;
+    font-size:0.95rem; font-family:inherit; background:var(--ivory);
+  }
+  .field input:focus, .field select:focus{ border-color:var(--gold); }
 
-/* Sidebar */
-.sidebar{
-    width:280px;
-    background:white;
-    padding:25px;
-    box-shadow:2px 0 15px rgba(0,0,0,.08);
-    position:sticky;
-    top:80px;
-    height:calc(100vh - 80px);
-    overflow-y:auto;
-}
+  .scanner-card{ display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .scanner{
+    width:180px; height:180px; border-radius:50%; background:var(--navy);
+    display:flex; align-items:center; justify-content:center; position:relative;
+    cursor:pointer; border:none; padding:0; overflow:hidden;
+    box-shadow: 0 0 0 6px var(--ivory-dark), 0 0 0 8px var(--navy);
+  }
+  .scanner:disabled{ cursor:default; }
+  .scanner svg{ width:60%; height:60%; position:relative; z-index:2; }
+  .scanner .ridge{ fill:none; stroke:var(--gold); stroke-width:3; stroke-linecap:round; opacity:0.85; }
+  .scan-sweep{
+    position:absolute; left:0; right:0; height:3px; background:var(--gold-light);
+    top:-10%; box-shadow:0 0 12px 2px var(--gold-light); opacity:0; z-index:3;
+  }
+  .scanner.scanning .scan-sweep{ animation: sweep 1.4s ease-in-out infinite; opacity:1; }
+  @keyframes sweep{ 0%{ top:8%; opacity:0;} 15%{opacity:1;} 85%{opacity:1;} 100%{ top:92%; opacity:0;} }
+  .scanner.scanning .ridge{ animation: pulseRidge 1.4s ease-in-out infinite; }
+  @keyframes pulseRidge{ 0%,100%{ opacity:0.6;} 50%{ opacity:1;} }
+  .scan-caption{ margin-top:18px; font-size:0.85rem; color:#6b5f4d; max-width:26ch; }
+  .scan-status{ margin-top:10px; font-weight:600; font-size:0.95rem; min-height:1.3em; }
+  .scan-status.ok{ color:var(--success); }
+  .scan-status.err{ color:var(--maroon); }
 
-.sidebar h2{
-    margin-bottom:20px;
-    color:#4f46e5;
-}
+  .stamp{
+    margin-top:18px; padding:14px 22px; border:3px double var(--success);
+    color:var(--success); font-family:'Cormorant Garamond', serif; font-weight:700;
+    font-size:1.15rem; letter-spacing:0.06em; text-transform:uppercase; border-radius:6px;
+    background:var(--success-light); transform:scale(0.5) rotate(-10deg); opacity:0;
+    display:none;
+  }
+  .stamp.show{ display:block; animation: stampIn .45s cubic-bezier(.2,1.4,.4,1) forwards; }
+  @keyframes stampIn{ 0%{ transform:scale(1.6) rotate(-14deg); opacity:0;} 60%{ transform:scale(0.92) rotate(-7deg); opacity:1;} 100%{ transform:scale(1) rotate(-8deg); opacity:1;} }
+  .stamp .stamp-sub{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.65rem; text-transform:none; letter-spacing:0.02em; margin-top:4px; font-weight:500;}
 
-.sidebar ul{
-    list-style:none;
-}
+  .demo-note{ margin-top:16px; font-size:0.72rem; color:#8a7d64; }
 
-.sidebar li{
-    margin-bottom:12px;
-}
+  .register{ margin-top:52px; }
+  .register-head{ display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;}
+  table.log{ width:100%; border-collapse:collapse; background:#fff; border-radius:8px; overflow:hidden; box-shadow:var(--shadow); }
+  table.log th, table.log td{ text-align:left; padding:12px 16px; font-size:0.9rem; border-bottom:1px solid var(--ivory-dark); }
+  table.log th{ background:var(--navy); color:var(--ivory); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; }
+  table.log tbody tr:last-child td{ border-bottom:none; }
+  table.log td.time{ font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--navy); }
+  .chip{ display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.72rem; font-weight:700; background:var(--success-light); color:var(--success); }
+  .empty-row td{ text-align:center; color:#8a7d64; padding:26px; font-style:italic; }
 
-.sidebar a{
-    text-decoration:none;
-    color:#444;
-    display:block;
-    padding:12px 15px;
-    border-radius:12px;
-    transition:.3s;
-}
+  footer{ border-top:1px solid var(--ivory-dark); padding:28px 24px; text-align:center; color:#8a7d64; font-size:0.8rem; }
 
-.sidebar a:hover{
-    background:#4f46e5;
-    color:white;
-    transform:translateX(8px);
-}
-
-/* Main Content */
-.main{
-    flex:1;
-    padding:35px;
-}
-
-.hero{
-    background:linear-gradient(135deg,#6366f1,#8b5cf6);
-    color:white;
-    padding:40px;
-    border-radius:20px;
-    margin-bottom:30px;
-    box-shadow:0 10px 25px rgba(99,102,241,.25);
-}
-
-.hero h1{
-    margin-bottom:10px;
-}
-
-.post{
-    background:white;
-    margin-bottom:25px;
-    padding:25px;
-    border-radius:18px;
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-    transition:.3s;
-}
-
-.post:hover{
-    transform:translateY(-5px);
-    box-shadow:0 12px 25px rgba(0,0,0,.12);
-}
-
-.post h2{
-    color:#4f46e5;
-    margin-bottom:10px;
-}
-
-.post-date{
-    color:#888;
-    font-size:14px;
-    margin-bottom:15px;
-}
-
-.read-btn{
-    margin-top:15px;
-    background:#4f46e5;
-    color:white;
-    border:none;
-    padding:10px 18px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.read-btn:hover{
-    background:#372fcf;
-}
-
-/* Footer */
-footer{
-    background:#1e293b;
-    color:white;
-    text-align:center;
-    padding:30px;
-}
-
-/* Responsive */
-@media(max-width:900px){
-
-.container{
-    flex-direction:column;
-}
-
-.sidebar{
-    width:100%;
-    height:auto;
-    position:relative;
-    top:0;
-}
-
-header{
-    padding:0 20px;
-}
-
-.logo{
-    font-size:22px;
-}
-}
+  @media (max-width:820px){
+    .hero{ grid-template-columns:1fr; }
+    .hero h1{ font-size:2.4rem; }
+    .about-grid{ grid-template-columns:1fr; }
+    .att-grid{ grid-template-columns:1fr; }
+    .info-strip{ grid-template-columns:1fr; }
+    nav.links{ gap:0; }
+    nav.links button{ padding:8px 10px; font-size:0.85rem; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
 </style>
 </head>
-
 <body>
 
 <header>
-    <div class="logo">🌟 मेरा पर्सनल ब्लॉग</div>
-    <button class="header-btn">संपर्क करें</button>
+  <div class="nav-wrap">
+    <a class="brand" href="#" onclick="showView('home');return false;">
+      <svg class="crest" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="24,3 44,12 44,24 24,45 4,24 4,12" fill="none" stroke="#C9A227" stroke-width="2"/>
+        <text x="24" y="29" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="18" fill="#C9A227">BJ</text>
+      </svg>
+      <span class="brand-text">
+        <span class="school-name" style="display:block;">Bala Ji High School</span>
+        <span class="school-sub">Attendance &amp; Portal</span>
+      </span>
+    </a>
+    <nav class="links">
+      <button data-view="home" onclick="showView('home')">Home</button>
+      <button data-view="about" onclick="showView('about')">About</button>
+      <button data-view="attendance" onclick="showView('attendance')">Sign In / Attendance</button>
+      <a class="btn-admission" href="https://forms.gle/bc71a6pcNoNNWAyq8" target="_blank" rel="noopener noreferrer">Admissions</a>
+    </nav>
+  </div>
 </header>
 
-<div class="container">
+<main>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <h2>📚 सेक्शन</h2>
-
-        <ul>
-            <li><a href="#post1">परिचय</a></li>
-            <li><a href="#post2">मेरी यात्रा</a></li>
-            <li><a href="#post3">टेक्नोलॉजी</a></li>
-            <li><a href="#post4">वेब डेवलपमेंट</a></li>
-            <li><a href="#post5">भविष्य की योजनाएँ</a></li>
-        </ul>
-    </aside>
-
-    <!-- Main Area -->
-    <main class="main">
-
-        <div class="hero">
-            <h1>स्वागत है मेरी वेबसाइट पर 👋</h1>
-            <p>
-                यहाँ आप मेरे लेख, विचार, प्रोजेक्ट और अनुभव पढ़ सकते हैं।
-            </p>
+  <!-- HOME -->
+  <section class="view active" id="view-home">
+    <div class="hero">
+      <div>
+        <span class="eyebrow">Bala Ji High School</span>
+        <h1>Every student, <br>present and counted.</h1>
+        <p class="lede">A school portal built around one simple idea: attendance should be quick, honest, and effortless — so the school day can start on time, every time.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://forms.gle/bc71a6pcNoNNWAyq8" target="_blank" rel="noopener noreferrer">Apply for Admission</a>
+          <button class="btn btn-ghost" onclick="showView('attendance')">Mark Attendance</button>
         </div>
+      </div>
+      <div class="seal-panel">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,6 90,26 90,74 50,94 10,74 10,26" fill="none" stroke="#C9A227" stroke-width="1.5"/>
+          <text x="50" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="34" fill="#F3ECDD">BJ</text>
+        </svg>
+      </div>
+    </div>
 
-        <section class="post" id="post1">
-            <h2>मेरा परिचय</h2>
-            <div class="post-date">01 जनवरी 2025</div>
-            <p>
-                नमस्कार! मैं एक टेक्नोलॉजी उत्साही हूँ और मुझे नई चीजें सीखना
-                तथा लोगों के साथ ज्ञान साझा करना पसंद है।
-            </p>
-            <button class="read-btn">और पढ़ें</button>
-        </section>
+    <div class="info-strip">
+      <div class="info-cell">
+        <div class="label">Curriculum</div>
+        <div class="value">Grades I – XII</div>
+      </div>
+      <div class="info-cell">
+        <div class="label">Day Structure</div>
+        <div class="value">Morning &amp; Afternoon Shifts</div>
+      </div>
+      <div class="info-cell">
+        <div class="label">Attendance</div>
+        <div class="value">Fingerprint Sign‑In</div>
+      </div>
+    </div>
+  </section>
 
-        <section class="post" id="post2">
-            <h2>मेरी सीखने की यात्रा</h2>
-            <div class="post-date">05 जनवरी 2025</div>
-            <p>
-                मैंने वेब डेवलपमेंट की शुरुआत HTML और CSS से की और धीरे-धीरे
-                JavaScript तथा आधुनिक फ्रेमवर्क्स तक पहुँचा।
-            </p>
-            <button class="read-btn">और पढ़ें</button>
-        </section>
+  <!-- ABOUT -->
+  <section class="view" id="view-about">
+    <div class="about-grid">
+      <div>
+        <span class="eyebrow">Our School</span>
+        <h2>About Bala Ji High School</h2>
+        <p>Bala Ji High School is committed to giving every student a disciplined, caring environment to learn and grow in. We believe that showing up — consistently, and on time — is the first lesson of a good education, which is why attendance sits at the front door of our school portal, not buried in a back office.</p>
+        <p style="margin-top:14px;">This page uses placeholder details for now — tell me your school's real address, founding year, or motto and I'll drop them straight in.</p>
+      </div>
+      <div class="values">
+        <div class="value-card">
+          <h3>Discipline</h3>
+          <p>Punctuality and accountability, starting with an honest daily register.</p>
+        </div>
+        <div class="value-card">
+          <h3>Curiosity</h3>
+          <p>Classrooms that reward questions as much as answers.</p>
+        </div>
+        <div class="value-card">
+          <h3>Community</h3>
+          <p>A school where every student and teacher is known by name.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section class="post" id="post3">
-            <h2>टेक्नोलॉजी का भविष्य</h2>
-            <div class="post-date">10 जनवरी 2025</div>
-            <p>
-                AI, Automation और Cloud Computing आने वाले वर्षों में दुनिया को
-                और अधिक बदलने वाले हैं।
-            </p>
-            <button class="read-btn">और पढ़ें</button>
-        </section>
+  <!-- ATTENDANCE -->
+  <section class="view" id="view-attendance">
+    <span class="eyebrow">Daily Register</span>
+    <h2 class="att-heading">Sign In &amp; Fingerprint Attendance</h2>
+    <p class="att-sub">Enter your details, then place a finger on the scanner to mark yourself present. Your entry is added to today's register below, instantly.</p>
 
-        <section class="post" id="post4">
-            <h2>वेब डेवलपमेंट टिप्स</h2>
-            <div class="post-date">15 जनवरी 2025</div>
-            <p>
-                साफ कोड, Responsive Design और Performance Optimization एक अच्छी
-                वेबसाइट की पहचान होते हैं।
-            </p>
-            <button class="read-btn">और पढ़ें</button>
-        </section>
+    <div class="att-grid">
+      <div class="card">
+        <div class="field">
+          <label for="f-name">Full Name</label>
+          <input id="f-name" type="text" placeholder="e.g. Ramesh Kumar" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="f-roll">Roll Number</label>
+          <input id="f-roll" type="text" placeholder="e.g. 10-A-24" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="f-class">Class &amp; Section</label>
+          <select id="f-class">
+            <option value="">Select class</option>
+            <option>I</option><option>II</option><option>III</option><option>IV</option>
+            <option>V</option><option>VI</option><option>VII</option><option>VIII</option>
+            <option>IX</option><option>X</option><option>XI</option><option>XII</option>
+            <option>Staff</option>
+          </select>
+        </div>
+        <p class="demo-note">This form feeds the scanner on the right — fill it in first.</p>
+      </div>
 
-        <section class="post" id="post5">
-            <h2>मेरी भविष्य की योजनाएँ</h2>
-            <div class="post-date">20 जनवरी 2025</div>
-            <p>
-                मैं नई तकनीकों पर काम करना चाहता हूँ और उपयोगी डिजिटल उत्पाद
-                बनाना चाहता हूँ।
-            </p>
-            <button class="read-btn">और पढ़ें</button>
-        </section>
+      <div class="card scanner-card">
+        <button class="scanner" id="scanner" onclick="runScan()" aria-label="Scan fingerprint to mark attendance">
+          <span class="scan-sweep"></span>
+          <svg viewBox="0 0 100 120" id="fp-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+        </button>
+        <p class="scan-caption">Fill in your details, then tap the scanner to mark yourself present.</p>
+        <div class="scan-status" id="scan-status"></div>
+        <div class="stamp" id="stamp">
+          Present
+          <span class="stamp-sub" id="stamp-sub"></span>
+        </div>
+        <p class="demo-note">Demo scanner — simulates a fingerprint read for this preview; no biometric hardware is accessed.</p>
+      </div>
+    </div>
 
-    </main>
+    <div class="register">
+      <div class="register-head">
+        <h3 style="font-size:1.4rem;">Today's Register — <span id="reg-date" class="mono" style="font-size:1rem;color:var(--maroon);"></span></h3>
+        <span id="reg-count" class="mono" style="font-size:0.85rem;color:#6b5f4d;"></span>
+      </div>
+      <table class="log">
+        <thead>
+          <tr><th>Name</th><th>Roll No.</th><th>Class</th><th>Time</th><th>Status</th></tr>
+        </thead>
+        <tbody id="reg-body">
+          <tr class="empty-row"><td colspan="5">Loading today's register…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-</div>
+</main>
 
 <footer>
-    <h3>© 2025 मेरा पर्सनल ब्लॉग</h3>
-    <p>Designed with ❤️ using HTML, CSS & JavaScript</p>
+  Bala Ji High School &middot; School Portal Demo &middot; Attendance records are stored for this school's device/browser only.
 </footer>
 
 <script>
-document.querySelectorAll(".read-btn").forEach(button=>{
-    button.addEventListener("click",()=>{
-        alert("यहाँ पूरी पोस्ट खुल सकती है।");
-    });
-});
+  // ---------- Navigation ----------
+  function showView(name){
+    document.querySelectorAll('section.view').forEach(s => s.classList.remove('active'));
+    document.getElementById('view-' + name).classList.add('active');
+    document.querySelectorAll('nav.links button').forEach(b => b.classList.toggle('active', b.dataset.view === name));
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  // ---------- Build fingerprint SVG ridges ----------
+  function buildFingerprint(){
+    const svg = document.getElementById('fp-svg');
+    const cx = 50, cy = 62;
+    let html = '';
+    for(let i=0; i<7; i++){
+      const w = 40 - i*5;
+      const h = 46 - i*5;
+      const d = `M ${cx-w},${cy-h*0.15}
+                 C ${cx-w},${cy-h*0.85} ${cx-w*0.5},${cy-h} ${cx},${cy-h}
+                 C ${cx+w*0.5},${cy-h} ${cx+w},${cy-h*0.85} ${cx+w},${cy-h*0.15}
+                 C ${cx+w},${cy+h*0.5} ${cx+w*0.55},${cy+h*0.88} ${cx+w*0.12},${cy+h*0.95}`;
+      html += `<path class="ridge" d="${d}" style="animation-delay:${i*0.06}s"></path>`;
+    }
+    svg.innerHTML = html;
+  }
+  buildFingerprint();
+
+  // ---------- Storage helpers ----------
+  const STORAGE_PREFIX = 'bjhs-attendance';
+
+  function todayKey(){
+    const d = new Date();
+    return d.toISOString().slice(0,10); // YYYY-MM-DD
+  }
+
+  async function loadTodayRecords(){
+    try{
+      const res = await window.storage.get(`${STORAGE_PREFIX}:${todayKey()}`, true);
+      return res && res.value ? JSON.parse(res.value) : [];
+    }catch(e){
+      return [];
+    }
+  }
+
+  async function saveTodayRecords(records){
+    try{
+      await window.storage.set(`${STORAGE_PREFIX}:${todayKey()}`, JSON.stringify(records), true);
+      return true;
+    }catch(e){
+      console.error('Storage error', e);
+      return false;
+    }
+  }
+
+  function renderDate(){
+    const d = new Date();
+    document.getElementById('reg-date').textContent = d.toLocaleDateString(undefined, { weekday:'short', year:'numeric', month:'short', day:'numeric' });
+  }
+
+  function renderRegister(records){
+    const body = document.getElementById('reg-body');
+    const count = document.getElementById('reg-count');
+    count.textContent = records.length ? `${records.length} marked present` : '';
+    if(!records.length){
+      body.innerHTML = `<tr class="empty-row"><td colspan="5">No one has signed in yet today.</td></tr>`;
+      return;
+    }
+    body.innerHTML = records.slice().reverse().map(r => `
+      <tr>
+        <td>${escapeHtml(r.name)}</td>
+        <td class="mono">${escapeHtml(r.roll)}</td>
+        <td>${escapeHtml(r.cls)}</td>
+        <td class="time">${escapeHtml(r.time)}</td>
+        <td><span class="chip">Present</span></td>
+      </tr>
+    `).join('');
+  }
+
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  async function refreshRegister(){
+    renderDate();
+    const records = await loadTodayRecords();
+    renderRegister(records);
+    return records;
+  }
+
+  // ---------- Scan flow ----------
+  let scanning = false;
+
+  async function runScan(){
+    if(scanning) return;
+
+    const name = document.getElementById('f-name').value.trim();
+    const roll = document.getElementById('f-roll').value.trim();
+    const cls = document.getElementById('f-class').value;
+    const statusEl = document.getElementById('scan-status');
+    const stampEl = document.getElementById('stamp');
+    stampEl.classList.remove('show');
+
+    if(!name || !roll || !cls){
+      statusEl.textContent = 'Fill in name, roll number and class first.';
+      statusEl.className = 'scan-status err';
+      return;
+    }
+
+    const records = await loadTodayRecords();
+    if(records.some(r => r.roll.toLowerCase() === roll.toLowerCase())){
+      statusEl.textContent = `${roll} is already marked present today.`;
+      statusEl.className = 'scan-status err';
+      return;
+    }
+
+    scanning = true;
+    const scanner = document.getElementById('scanner');
+    scanner.classList.add('scanning');
+    scanner.setAttribute('disabled','true');
+    statusEl.textContent = 'Scanning…';
+    statusEl.className = 'scan-status';
+
+    await new Promise(res => setTimeout(res, 1400));
+
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString(undefined, { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    const record = { name, roll, cls, time: timeStr };
+    records.push(record);
+    const ok = await saveTodayRecords(records);
+
+    scanner.classList.remove('scanning');
+    scanner.removeAttribute('disabled');
+    scanning = false;
+
+    if(ok){
+      statusEl.textContent = `Welcome, ${name}. Attendance marked.`;
+      statusEl.className = 'scan-status ok';
+      document.getElementById('stamp-sub').textContent = `${roll} · ${timeStr}`;
+      stampEl.classList.add('show');
+      renderRegister(records);
+      document.getElementById('f-name').value = '';
+      document.getElementById('f-roll').value = '';
+      document.getElementById('f-class').value = '';
+    } else {
+      statusEl.textContent = 'Could not save attendance — please try again.';
+      statusEl.className = 'scan-status err';
+    }
+  }
+
+  refreshRegister();
 </script>
 
 </body>
